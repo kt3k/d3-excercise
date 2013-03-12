@@ -32,7 +32,9 @@ var updateData = function () {
         .duration(DURATION)
         .attr('cx', function (d) { return d.cx + 100; })
         .attr('cy', function (d) { return d.cy + 100; })
-        .attr('r', function(d) { return d.r + 4; });
+        .attr('r', function(d) { return d.r + 4; })
+        .style('fill', '#3333aa')
+        .style('stroke', '#111177');
 };
 </script>
 <body onload="init(); updateData(); ">
