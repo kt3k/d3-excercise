@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<meta charset="utf-8" />
+<title>2</title>
+<script type="text/javascript" src="js/coffee-script.js"></script>
+<script type="text/javascript" src="js/d3.v3.js" charset="UTF-8"></script>
+<script type="text/coffeescript">
+
+createData = ->
+  [1..9].map (i) ->
+    [1..9].map (j) -> i * j
+
+init = ->
+  data = createData()
+
+  d3.select('body').append('table')
+    .attr('border', 1)
+    .selectAll('tr').data(data)
+      .enter().append('tr')
+        .selectAll('td').data((d) -> d)
+          .enter().append('td')
+            .text((d) -> d)
+
+init()
+
+</script>
+<body></body>
+</html>
