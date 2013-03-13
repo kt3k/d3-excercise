@@ -13,13 +13,17 @@ createData = ->
 init = ->
   data = createData()
 
-  d3.select('body').append('table')
+  d3.select('body')
+    .append('table')
     .attr('border', 1)
-    .selectAll('tr').data(data)
-      .enter().append('tr')
-        .selectAll('td').data((d) -> d)
-          .enter().append('td')
-            .text((d) -> d)
+      .selectAll('tr')
+      .data(data)
+      .enter()
+      .append('tr')
+        .selectAll('td')
+        .data((d) -> d)
+        .enter().append('td')
+          .text((d) -> d)
 
 init()
 
