@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<meta charset="utf-8" />
+<title>3</title>
+<script type="text/javascript" src="js/coffee-script.js"></script>
+<script type="text/javascript" src="js/d3.v3.js" charset="UTF-8"></script>
+<script type="text/coffeescript">
+
+createData = ->
+  [1..19].map (i) ->
+    [1..23].map (j) ->
+      text: i * j
+      parity: ~(i + j + Math.random() * 2) % 2
+
+init = ->
+  data = createData()
+
+  d3.select('body')
+    .append('table')
+    .attr('border', 1)
+    .style('margin', 'auto')
+      .selectAll('tr').data(data)
+      .enter()
+      .append('tr')
+        .selectAll('td')
+        .data((d) -> d)
+        .enter()
+        .append('td')
+          .text('&&&')#(d) -> d.text)
+          .style('background-color', (d) -> if d.parity is 0 then 'hsl(20,100%,50%)' else 'hsl(200,50%,50%)')
+
+  setInterval updateData, 200
+
+updateData = ->
+  data = createData()
+
+  d3
+    .selectAll('tr')
+    .data(data)
+      .selectAll('td')
+      .data((d) -> d)
+      .transition()
+        .duration(400)
+        .style('background-color', (d) -> if d.parity is 0 then 'hsl(20,100%,50%)' else 'hsl(200,50%,50%)')
+
+init()
+
+</script>
+<body></body>
+</html>
